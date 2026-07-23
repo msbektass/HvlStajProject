@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=hvlstajproject
     username: postgres
-    password: ${DB_PASSWORD}
+    password: {DB-PASSWORD}
     driver-class-name: org.postgresql.Driver
   liquibase:
     default-schema: hvlstajproject
