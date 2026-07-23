@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: hvlstajproject
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=hvlstajproject
+    username: postgres
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    default-schema: hvlstajproject
+    liquibase-schema: hvlstajproject
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.default_schema: hvlstajproject
+      hibernate.jdbc.batch_size: 20
+      hibernate.cache.use_query_cache: false
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_structured_entries: false
+      hibernate.cache.use_minimal_puts: false
