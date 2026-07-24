@@ -2,7 +2,6 @@ package com.example.hvlstajproject.controller;
 
 import com.example.hvlstajproject.dto.DoctorRequestDTO;
 import com.example.hvlstajproject.dto.DoctorResponseDTO;
-import com.example.hvlstajproject.dto.PatientResponseDTO;
 import com.example.hvlstajproject.service.DoctorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

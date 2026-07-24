@@ -36,7 +36,7 @@ public class DoctorServiceImpl implements DoctorService {
         if(doctorRepository.existsByTelNoAndIdNot(doctorRequestDTO.getTelNo(), id)) {
             throw new DuplicateTelNoException(doctorRequestDTO.getTelNo());
         }
-        Doctor doctor = doctorMapper.toDoctor(doctorRequestDTO);
+        Doctor doctor = findDoctorById(id);
         doctorMapper.updateDoctor(doctorRequestDTO, doctor);
         Doctor updated =  doctorRepository.save(doctor);
         return doctorMapper.toResponseDTO(updated);
@@ -45,7 +45,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Transactional(readOnly = true)
     @Override
     public DoctorResponseDTO getDoctorById(Long id) {
-        Doctor doctor = doctorRepository.getOne(id);
+        Doctor doctor = findDoctorById(id);
         return doctorMapper.toResponseDTO(doctor);
     }
 
