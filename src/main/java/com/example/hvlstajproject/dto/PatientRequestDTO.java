@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DtoPatientRequest {
+public class PatientRequestDTO {
     @NotBlank(message = "TC kimlik numarası boş olamaz")
     @Pattern(regexp = "\\d{11}", message = "TC kimlik numarası 11 rakamdan oluşmalıdır")
     private String tcNo;

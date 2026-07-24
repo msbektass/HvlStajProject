@@ -1,14 +1,14 @@
 package com.example.hvlstajproject.service;
 
-import com.example.hvlstajproject.dto.DtoPatientRequest;
-import com.example.hvlstajproject.dto.DtoPatientResponse;
+import com.example.hvlstajproject.dto.PatientRequestDTO;
+import com.example.hvlstajproject.dto.PatientResponseDTO;
 
 import java.util.List;
 
 public interface PatientService {
-    DtoPatientResponse createPatient(DtoPatientRequest dtoPatientRequest);
-    DtoPatientResponse getPatientById(Long id);
-    List<DtoPatientResponse> getAllPatients();
-    DtoPatientResponse updatePatient(Long id, DtoPatientRequest dtoPatientRequest);
+    PatientResponseDTO createPatient(PatientRequestDTO patientRequestDTO);
+    PatientResponseDTO getPatientById(Long id);
+    List<PatientResponseDTO> getAllPatients();
+    PatientResponseDTO updatePatient(Long id, PatientRequestDTO patientRequestDTO);
     void deletePatient(Long id);
 }

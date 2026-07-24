@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DtoPatientResponse {
+public class PatientResponseDTO {
     private String tcNo;
     private String firstName;
     private String lastName;

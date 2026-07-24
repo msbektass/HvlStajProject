@@ -1,7 +1,7 @@
 package com.example.hvlstajproject.service.impl;
 
-import com.example.hvlstajproject.dto.DtoPatientRequest;
-import com.example.hvlstajproject.dto.DtoPatientResponse;
+import com.example.hvlstajproject.dto.PatientRequestDTO;
+import com.example.hvlstajproject.dto.PatientResponseDTO;
 import com.example.hvlstajproject.entity.Patient;
 import com.example.hvlstajproject.exception.DuplicateTcNoException;
 import com.example.hvlstajproject.exception.PatientNotFoundException;
@@ -22,36 +22,36 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     @Transactional
-    public DtoPatientResponse createPatient(DtoPatientRequest dtoPatientRequest) {
-        if(patientRepository.existsByTcNo(dtoPatientRequest.getTcNo())) {
-            throw new DuplicateTcNoException(dtoPatientRequest.getTcNo());
+    public PatientResponseDTO createPatient(PatientRequestDTO patientRequestDTO) {
+        if(patientRepository.existsByTcNo(patientRequestDTO.getTcNo())) {
+            throw new DuplicateTcNoException(patientRequestDTO.getTcNo());
         }
-        Patient patient = patientMapper.toPatient(dtoPatientRequest);
+        Patient patient = patientMapper.toPatient(patientRequestDTO);
         Patient saved = patientRepository.save(patient);
         return patientMapper.toResponseDto(saved);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public DtoPatientResponse getPatientById(Long id) {
+    public PatientResponseDTO getPatientById(Long id) {
         Patient patient = findPatientById(id);
         return patientMapper.toResponseDto(patient);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<DtoPatientResponse> getAllPatients() {
+    public List<PatientResponseDTO> getAllPatients() {
         return patientRepository.findAll().stream().map(patientMapper :: toResponseDto).toList();
     }
 
     @Override
     @Transactional
-    public DtoPatientResponse updatePatient(Long id, DtoPatientRequest dtoPatientRequest) {
-        if(patientRepository.existsByTcNoAndIdNot(dtoPatientRequest.getTcNo(), id)) {
-            throw new DuplicateTcNoException(dtoPatientRequest.getTcNo());
+    public PatientResponseDTO updatePatient(Long id, PatientRequestDTO patientRequestDTO) {
+        if(patientRepository.existsByTcNoAndIdNot(patientRequestDTO.getTcNo(), id)) {
+            throw new DuplicateTcNoException(patientRequestDTO.getTcNo());
         }
         Patient patient = findPatientById(id);
-        patientMapper.updatePatient(dtoPatientRequest, patient);
+        patientMapper.updatePatient(patientRequestDTO, patient);
         Patient updated = patientRepository.save(patient);
         return patientMapper.toResponseDto(updated);
     }
