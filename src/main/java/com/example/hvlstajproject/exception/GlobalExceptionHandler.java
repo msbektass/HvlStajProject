@@ -17,4 +17,12 @@ public class GlobalExceptionHandler extends RuntimeException {
     public ResponseEntity<Map<String, String>> handlePatientNotFoundException(PatientNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", e.getMessage()));
     }
+    @ExceptionHandler(DuplicateTelNoException.class)
+    public ResponseEntity<Map<String, String>> handleDuplicateTelNoException(DuplicateTelNoException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("message", e.getMessage()));
+    }
+    @ExceptionHandler(DoctorNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleDoctorNotFoundException(DoctorNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", e.getMessage()));
+    }
 }
