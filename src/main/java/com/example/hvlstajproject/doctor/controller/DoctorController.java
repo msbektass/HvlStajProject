@@ -2,7 +2,7 @@ package com.example.hvlstajproject.doctor.controller;
 
 import com.example.hvlstajproject.doctor.dto.DoctorRequestDTO;
 import com.example.hvlstajproject.doctor.dto.DoctorResponseDTO;
-import com.example.hvlstajproject.appointment.service.DoctorService;
+import com.example.hvlstajproject.doctor.service.DoctorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

@@ -1,12 +1,12 @@
-package com.example.hvlstajproject.appointment.service;
+package com.example.hvlstajproject.doctor.service;
 
 import com.example.hvlstajproject.doctor.dto.DoctorRequestDTO;
 import com.example.hvlstajproject.doctor.dto.DoctorResponseDTO;
 import com.example.hvlstajproject.doctor.entity.Doctor;
 import com.example.hvlstajproject.exception.doctor.DoctorNotFoundException;
 import com.example.hvlstajproject.exception.common.DuplicateTelNoException;
-import com.example.hvlstajproject.appointment.mapper.DoctorMapper;
-import com.example.hvlstajproject.appointment.repository.DoctorRepository;
+import com.example.hvlstajproject.doctor.mapper.DoctorMapper;
+import com.example.hvlstajproject.doctor.repository.DoctorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

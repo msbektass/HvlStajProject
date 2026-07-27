@@ -1,4 +1,4 @@
-package com.example.hvlstajproject.appointment.service;
+package com.example.hvlstajproject.doctor.service;
 
 import com.example.hvlstajproject.doctor.dto.DoctorRequestDTO;
 import com.example.hvlstajproject.doctor.dto.DoctorResponseDTO;

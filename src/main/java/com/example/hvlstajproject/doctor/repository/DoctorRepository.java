@@ -1,4 +1,4 @@
-package com.example.hvlstajproject.appointment.repository;
+package com.example.hvlstajproject.doctor.repository;
 
 import com.example.hvlstajproject.doctor.entity.Doctor;
 import org.springframework.data.jpa.repository.JpaRepository;

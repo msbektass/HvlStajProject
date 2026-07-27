@@ -1,4 +1,4 @@
-package com.example.hvlstajproject.appointment.mapper;
+package com.example.hvlstajproject.doctor.mapper;
 
 import com.example.hvlstajproject.doctor.dto.DoctorRequestDTO;
 import com.example.hvlstajproject.doctor.dto.DoctorResponseDTO;
