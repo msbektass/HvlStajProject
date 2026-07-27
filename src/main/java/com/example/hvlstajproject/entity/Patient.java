@@ -1,16 +1,14 @@
 package com.example.hvlstajproject.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "patient")
 @NoArgsConstructor
-@AllArgsConstructor
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
