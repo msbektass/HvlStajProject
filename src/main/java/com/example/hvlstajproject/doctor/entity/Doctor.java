@@ -2,6 +2,7 @@ package com.example.hvlstajproject.doctor.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.example.hvlstajproject.enums.Gender;
 
 @Entity
 @Setter
@@ -31,6 +32,7 @@ public class Doctor {
     @Column(nullable = false)
     private String address;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String gender;
+    private Gender gender;
 }

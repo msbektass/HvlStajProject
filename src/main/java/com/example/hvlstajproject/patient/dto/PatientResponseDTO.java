@@ -1,5 +1,6 @@
 package com.example.hvlstajproject.patient.dto;
 
+import com.example.hvlstajproject.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,4 +15,5 @@ public class PatientResponseDTO {
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
+    private Gender gender;
 }

@@ -2,14 +2,12 @@ package com.example.hvlstajproject.patient.manager;
 
 import com.example.hvlstajproject.exception.common.DuplicateTcNoException;
 import com.example.hvlstajproject.exception.patient.PatientNotFoundException;
-import com.example.hvlstajproject.patient.dto.PatientRequestDTO;
 import com.example.hvlstajproject.patient.entity.Patient;
 import com.example.hvlstajproject.patient.repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Component
 @RequiredArgsConstructor
@@ -35,7 +33,7 @@ public class PatientManager {
         patientRepository.delete(patient);
     }
 
-    public void checkDuplicateTcNo(Patient patient){
+    private void checkDuplicateTcNo(Patient patient){
         boolean duplicate;
         if (patient.getId() == null){
             duplicate = patientRepository.existsByTcNo(patient.getTcNo());

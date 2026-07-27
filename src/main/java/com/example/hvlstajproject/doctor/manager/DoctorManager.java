@@ -35,7 +35,7 @@ public class DoctorManager {
 
     private void checkDuplicateTelNo(Doctor doctor){
         boolean duplicate;
-        if(doctor.getTelNo() == null){
+        if(doctor.getId() == null){
             duplicate = doctorRepository.existsByTelNo(doctor.getTelNo());
         }
         else{

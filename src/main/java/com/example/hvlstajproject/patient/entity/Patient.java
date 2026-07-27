@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import com.example.hvlstajproject.enums.Gender;
 @Getter
 @Setter
 @Entity
@@ -34,4 +35,8 @@ public class Patient {
 
     @Column(nullable = false)
     private String address;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Gender gender;
 }

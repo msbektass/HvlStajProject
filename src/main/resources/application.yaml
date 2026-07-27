@@ -1,14 +1,20 @@
 spring:
   application:
     name: hvlstajproject
+  jackson:
+    mapper:
+      accept-case-insensitive-enums: true
+
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=hvlstajproject
     username: postgres
-    password: { db-password }
+    password: ${ db_password }
     driver-class-name: org.postgresql.Driver
+
   liquibase:
     default-schema: hvlstajproject
     liquibase-schema: hvlstajproject
+
   jpa:
     show-sql: true
     hibernate:
