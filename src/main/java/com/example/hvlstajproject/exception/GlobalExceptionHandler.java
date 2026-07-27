@@ -1,5 +1,9 @@
 package com.example.hvlstajproject.exception;
 
+import com.example.hvlstajproject.exception.common.DuplicateTcNoException;
+import com.example.hvlstajproject.exception.common.DuplicateTelNoException;
+import com.example.hvlstajproject.exception.doctor.DoctorNotFoundException;
+import com.example.hvlstajproject.exception.patient.PatientNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
