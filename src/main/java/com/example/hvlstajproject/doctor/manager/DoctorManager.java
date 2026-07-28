@@ -1,6 +1,9 @@
 package com.example.hvlstajproject.doctor.manager;
 
+import com.example.hvlstajproject.doctor.dto.DoctorRequestDTO;
+import com.example.hvlstajproject.doctor.dto.DoctorResponseDTO;
 import com.example.hvlstajproject.doctor.entity.Doctor;
+import com.example.hvlstajproject.doctor.mapper.DoctorMapper;
 import com.example.hvlstajproject.doctor.repository.DoctorRepository;
 import com.example.hvlstajproject.common.exception.common.DuplicateTelNoException;
 import com.example.hvlstajproject.common.exception.doctor.DoctorNotFoundException;
@@ -8,41 +11,48 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
 public class DoctorManager {
 
     private final DoctorRepository doctorRepository;
+    private final DoctorMapper doctorMapper;
 
-    public Doctor save(Doctor doctor){
-        checkDuplicateTelNo(doctor);
-        return doctorRepository.save(doctor);
+    public DoctorResponseDTO create(DoctorRequestDTO requestDTO) {
+        Doctor doctor = doctorMapper.toDoctor(requestDTO);
+        Doctor savedDoctor = doctorRepository.save(doctor);
+        return doctorMapper.toResponseDTO(savedDoctor);
     }
 
-    public Doctor getById(Long id){
-        return doctorRepository.findById(id).orElseThrow(() -> new DoctorNotFoundException(id));
+    public DoctorResponseDTO update(Doctor doctor, DoctorRequestDTO requestDTO) {
+        doctorMapper.updateDoctor(requestDTO, doctor);
+        Doctor updatedDoctor = doctorRepository.save(doctor);
+        return doctorMapper.toResponseDTO(updatedDoctor);
     }
 
-    public List<Doctor> getAll(){
-        return doctorRepository.findAll();
+    public Optional<Doctor> findById(Long id) {
+        return doctorRepository.findById(id);
     }
 
-    public void deleteById(Long id){
-        Doctor doctor = getById(id);
+    public DoctorResponseDTO toResponseDTO(Doctor doctor) {
+        return doctorMapper.toResponseDTO(doctor);
+    }
+
+    public List<DoctorResponseDTO> findAll() {
+        return doctorRepository.findAll().stream().map(doctorMapper::toResponseDTO).toList();
+    }
+
+    public void delete(Doctor doctor) {
         doctorRepository.delete(doctor);
     }
 
-    private void checkDuplicateTelNo(Doctor doctor){
-        boolean duplicate;
-        if(doctor.getId() == null){
-            duplicate = doctorRepository.existsByTelNo(doctor.getTelNo());
-        }
-        else{
-            duplicate = doctorRepository.existsByTelNoAndIdNot(doctor.getTelNo(), doctor.getId());
-        }
-        if(duplicate){
-            throw new DuplicateTelNoException(doctor.getTelNo());
-        }
+    public boolean existsByTelNo(String telNo) {
+        return doctorRepository.existsByTelNo(telNo);
+    }
+
+    public boolean existsByTelNoAndIdNot(String telNo, Long id) {
+        return doctorRepository.existsByTelNoAndIdNot(telNo, id);
     }
 }

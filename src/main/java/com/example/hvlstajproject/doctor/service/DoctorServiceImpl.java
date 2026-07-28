@@ -1,5 +1,7 @@
 package com.example.hvlstajproject.doctor.service;
 
+import com.example.hvlstajproject.common.exception.common.DuplicateTelNoException;
+import com.example.hvlstajproject.common.exception.doctor.DoctorNotFoundException;
 import com.example.hvlstajproject.doctor.dto.DoctorRequestDTO;
 import com.example.hvlstajproject.doctor.dto.DoctorResponseDTO;
 import com.example.hvlstajproject.doctor.entity.Doctor;
@@ -15,40 +17,56 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DoctorServiceImpl implements DoctorService {
     private final DoctorManager doctorManager;
-    private final DoctorMapper doctorMapper;
 
     @Override
     @Transactional
-    public DoctorResponseDTO createDoctor(DoctorRequestDTO doctorRequestDTO) {
-        Doctor doctor = doctorMapper.toDoctor(doctorRequestDTO);
-        Doctor saved =  doctorManager.save(doctor);
-        return doctorMapper.toResponseDTO(saved);
-    }
-    @Transactional
-    @Override
-    public DoctorResponseDTO updateDoctor(Long id, DoctorRequestDTO doctorRequestDTO) {
-        Doctor doctor = doctorManager.getById(id);
-        doctorMapper.updateDoctor(doctorRequestDTO, doctor);
-        Doctor updated =  doctorManager.save(doctor);
-        return doctorMapper.toResponseDTO(updated);
+    public DoctorResponseDTO createDoctor(DoctorRequestDTO requestDTO) {
+        checkDuplicateTelNo(requestDTO.getTelNo(), null);
+        return doctorManager.create(requestDTO);
     }
 
+    @Override
+    @Transactional
+    public DoctorResponseDTO updateDoctor(Long id, DoctorRequestDTO requestDTO) {
+        Doctor doctor = getDoctorOrThrow(id);
+        checkDuplicateTelNo(requestDTO.getTelNo(), id);
+        return doctorManager.update(doctor, requestDTO);
+    }
+
+    @Override
     @Transactional(readOnly = true)
-    @Override
     public DoctorResponseDTO getDoctorById(Long id) {
-        Doctor doctor = doctorManager.getById(id);
-        return doctorMapper.toResponseDTO(doctor);
+        Doctor doctor = getDoctorOrThrow(id);
+        return doctorManager.toResponseDTO(doctor);
     }
 
+    @Override
     @Transactional(readOnly = true)
-    @Override
     public List<DoctorResponseDTO> getAllDoctors() {
-        return doctorManager.getAll().stream().map(doctorMapper :: toResponseDTO).toList();
+        return doctorManager.findAll();
     }
 
-    @Transactional
     @Override
+    @Transactional
     public void deleteDoctor(Long id) {
-        doctorManager.deleteById(id);
+        Doctor doctor = getDoctorOrThrow(id);
+        doctorManager.delete(doctor);
+    }
+
+    private Doctor getDoctorOrThrow(Long id) {
+        return doctorManager.findById(id).orElseThrow(() -> new DoctorNotFoundException(id));
+    }
+
+    private void checkDuplicateTelNo(String telNo, Long excludedDoctorId) {
+        boolean duplicate;
+        if (excludedDoctorId == null) {
+            duplicate = doctorManager.existsByTelNo(telNo);
+        } else {
+            duplicate = doctorManager.existsByTelNoAndIdNot(telNo, excludedDoctorId
+            );
+        }
+        if (duplicate) {
+            throw new DuplicateTelNoException(telNo);
+        }
     }
 }
