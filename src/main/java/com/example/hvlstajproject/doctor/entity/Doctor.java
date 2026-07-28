@@ -14,25 +14,25 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name",nullable = false )
+    @Column(name = "first_name",nullable = false, length = 50)
     private String  firstName;
 
-    @Column(name = "last_name", nullable = false )
+    @Column(name = "last_name", nullable = false, length = 50)
     private String lastName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 75)
     private String branch;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "tel_no", nullable = false, unique = true, length = 13)
     private String telNo;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     private String address;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10)
     private EGender gender;
 }
