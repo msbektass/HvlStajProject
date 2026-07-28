@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class PatientRequestDTO {
 
-    @TcNoValidation
+    @TcNoValidation (message = "Geçerli bir TC Kimlik Numarası giriniz")
     private String tcNo;
 
     @NotBlank(message = "Ad boş olamaz")
