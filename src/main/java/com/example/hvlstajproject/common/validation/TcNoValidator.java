@@ -23,7 +23,7 @@ public class TcNoValidator implements ConstraintValidator<TcNoValidation, String
         if ((tcNo.charAt(9) - '0') != ((odd - even) % 10)){
             return false;
         }
-        if((tcNo.charAt(10) - '0') != (((odd / 7) + even + (tcNo.charAt(0) - '0')) % 10)){
+        if((tcNo.charAt(10) - '0') != (((odd / 7) + even + (tcNo.charAt(9) - '0')) % 10)){
             return false;
         }
         return true;
