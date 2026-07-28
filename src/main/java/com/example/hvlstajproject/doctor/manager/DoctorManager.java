@@ -2,8 +2,8 @@ package com.example.hvlstajproject.doctor.manager;
 
 import com.example.hvlstajproject.doctor.entity.Doctor;
 import com.example.hvlstajproject.doctor.repository.DoctorRepository;
-import com.example.hvlstajproject.exception.common.DuplicateTelNoException;
-import com.example.hvlstajproject.exception.doctor.DoctorNotFoundException;
+import com.example.hvlstajproject.common.exception.common.DuplicateTelNoException;
+import com.example.hvlstajproject.common.exception.doctor.DoctorNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

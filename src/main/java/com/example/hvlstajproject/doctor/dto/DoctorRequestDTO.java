@@ -1,6 +1,6 @@
 package com.example.hvlstajproject.doctor.dto;
 
-import com.example.hvlstajproject.enums.Gender;
+import com.example.hvlstajproject.common.enums.EGender;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -30,7 +30,7 @@ public class DoctorRequestDTO {
 
     @NotBlank(message = "Adres boş olamaz")
     private String address;
-    
+
     @NotNull(message = "Cinsiyet bilgisi boş bırakılamaz")
-    private Gender gender;
+    private EGender gender;
 }

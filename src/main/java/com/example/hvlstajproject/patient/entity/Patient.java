@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import com.example.hvlstajproject.enums.Gender;
+import com.example.hvlstajproject.common.enums.EGender;
 @Getter
 @Setter
 @Entity
@@ -38,5 +38,5 @@ public class Patient {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Gender gender;
+    private EGender gender;
 }

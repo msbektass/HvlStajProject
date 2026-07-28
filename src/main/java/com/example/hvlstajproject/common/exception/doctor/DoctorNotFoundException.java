@@ -1,4 +1,4 @@
-package com.example.hvlstajproject.exception.doctor;
+package com.example.hvlstajproject.common.exception.doctor;
 
 public class DoctorNotFoundException extends RuntimeException {
     public DoctorNotFoundException(Long id) {

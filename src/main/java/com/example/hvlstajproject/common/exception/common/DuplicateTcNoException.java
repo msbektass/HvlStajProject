@@ -1,4 +1,4 @@
-package com.example.hvlstajproject.exception.common;
+package com.example.hvlstajproject.common.exception.common;
 
 public class DuplicateTcNoException extends RuntimeException {
     public DuplicateTcNoException(String tcNo) {

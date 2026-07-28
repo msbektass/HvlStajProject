@@ -1,7 +1,7 @@
 package com.example.hvlstajproject.patient.manager;
 
-import com.example.hvlstajproject.exception.common.DuplicateTcNoException;
-import com.example.hvlstajproject.exception.patient.PatientNotFoundException;
+import com.example.hvlstajproject.common.exception.common.DuplicateTcNoException;
+import com.example.hvlstajproject.common.exception.patient.PatientNotFoundException;
 import com.example.hvlstajproject.patient.entity.Patient;
 import com.example.hvlstajproject.patient.repository.PatientRepository;
 import lombok.RequiredArgsConstructor;

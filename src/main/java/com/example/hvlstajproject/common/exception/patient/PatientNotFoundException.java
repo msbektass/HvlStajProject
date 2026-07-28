@@ -1,4 +1,4 @@
-package com.example.hvlstajproject.exception.patient;
+package com.example.hvlstajproject.common.exception.patient;
 
 public class PatientNotFoundException extends RuntimeException {
     public PatientNotFoundException(Long id) {
