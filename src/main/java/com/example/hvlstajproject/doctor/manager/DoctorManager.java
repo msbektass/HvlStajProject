@@ -5,8 +5,6 @@ import com.example.hvlstajproject.doctor.dto.DoctorResponseDTO;
 import com.example.hvlstajproject.doctor.entity.Doctor;
 import com.example.hvlstajproject.doctor.mapper.DoctorMapper;
 import com.example.hvlstajproject.doctor.repository.DoctorRepository;
-import com.example.hvlstajproject.common.exception.common.DuplicateTelNoException;
-import com.example.hvlstajproject.common.exception.doctor.DoctorNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

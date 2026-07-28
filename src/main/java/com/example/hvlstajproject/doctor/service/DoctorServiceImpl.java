@@ -6,7 +6,6 @@ import com.example.hvlstajproject.doctor.dto.DoctorRequestDTO;
 import com.example.hvlstajproject.doctor.dto.DoctorResponseDTO;
 import com.example.hvlstajproject.doctor.entity.Doctor;
 import com.example.hvlstajproject.doctor.manager.DoctorManager;
-import com.example.hvlstajproject.doctor.mapper.DoctorMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

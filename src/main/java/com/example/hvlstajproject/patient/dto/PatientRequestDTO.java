@@ -1,6 +1,7 @@
 package com.example.hvlstajproject.patient.dto;
 
 import com.example.hvlstajproject.common.enums.EGender;
+import com.example.hvlstajproject.common.validation.EmailValidation;
 import com.example.hvlstajproject.common.validation.TcNoValidation;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,7 @@ public class PatientRequestDTO {
     @NotBlank(message = "E-posta boş olamaz")
     @Email(message = "Geçerli bir e-posta girilmelidir")
     @Size(max = 100, message = "E-posta en fazla 100 karakter olmalı")
+    @EmailValidation(message = "E-postada @ işaretinden sonrası küçük karakter olmalı")
     private String email;
 
     @NotBlank(message = "Telefon numarası boş olamaz")
