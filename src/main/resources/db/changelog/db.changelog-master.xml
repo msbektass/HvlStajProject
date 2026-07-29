@@ -11,4 +11,7 @@
     <include
             file="changes/002-create-doctor-table.xml"
             relativeToChangelogFile="true"/>
+    <include
+            file="changes/003-create-appointment-table.xml"
+             relativeToChangelogFile="true"/>
 </databaseChangeLog>
