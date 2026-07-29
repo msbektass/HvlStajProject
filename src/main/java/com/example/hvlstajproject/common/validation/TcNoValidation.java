@@ -10,7 +10,7 @@ import java.lang.annotation.*;
 @Documented
 @Constraint(validatedBy = {TcNoValidator.class})
 public @interface TcNoValidation {
-    public String message() default "Geçersiz kimlik numarası";
+    public String message() default "Girdiğiniz veri geçersiz";
 
     Class<?>[] groups() default { };
 

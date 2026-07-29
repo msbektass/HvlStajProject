@@ -11,7 +11,9 @@ import org.mapstruct.MappingTarget;
 public interface DoctorMapper {
     @Mapping(target = "id", ignore = true)
     Doctor toDoctor(DoctorRequestDTO doctorRequestDTO);
+
     DoctorResponseDTO toResponseDTO(Doctor doctor);
+
     @Mapping(target = "id", ignore = true)
     void updateDoctor(DoctorRequestDTO doctorRequestDTO, @MappingTarget Doctor doctor);
 }

@@ -3,6 +3,7 @@ package com.example.hvlstajproject.patient.dto;
 import com.example.hvlstajproject.common.enums.EGender;
 import com.example.hvlstajproject.common.validation.EmailValidation;
 import com.example.hvlstajproject.common.validation.TcNoValidation;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class PatientRequestDTO {
 
-    @TcNoValidation (message = "Geçerli bir TC Kimlik Numarası giriniz")
+    @TcNoValidation(message = "Geçerli bir TC Kimlik Numarası giriniz")
     private String tcNo;
 
     @NotBlank(message = "Ad boş olamaz")
