@@ -24,7 +24,7 @@ public class PatientServiceImplTest {
 
     @InjectMocks
     private PatientServiceImpl patientServiceImpl;
-
+// @Spy anotasyonu
     @Mock
     private PatientManager patientManager;
 
