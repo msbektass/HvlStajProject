@@ -3,9 +3,7 @@ package com.example.hvlstajproject.appointment.dto;
 import com.example.hvlstajproject.common.enums.EAppointmentStatus;
 import com.example.hvlstajproject.doctor.dto.DoctorResponseDTO;
 import com.example.hvlstajproject.patient.dto.PatientResponseDTO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
