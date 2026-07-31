@@ -4,6 +4,8 @@ import com.example.hvlstajproject.appointment.dto.AppointmentRequestDTO;
 import com.example.hvlstajproject.appointment.dto.AppointmentResponseDTO;
 import com.example.hvlstajproject.appointment.dto.AppointmentStatusChangeDTO;
 import com.example.hvlstajproject.appointment.service.AppointmentService;
+import com.example.hvlstajproject.doctor.dto.DoctorResponseDTO;
+import com.example.hvlstajproject.patient.dto.PatientResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -23,6 +25,18 @@ public class AppointmentController {
     @GetMapping
     public List<AppointmentResponseDTO> getAllAppointments() {
         return appointmentService.getAllAppointments();
+    }
+
+    @Operation(summary = "Randevu üzerinden hasta çekme")
+    @GetMapping("/{appointmentId}/patient")
+    public PatientResponseDTO getPatientFromAppointment(@PathVariable Long appointmentId) {
+        return appointmentService.getAppointmentById(appointmentId).getPatient();
+    }
+
+    @Operation(summary = "Randevu üzerinden doktor çekme")
+    @GetMapping("/{appointmentId}/doctor")
+    public DoctorResponseDTO getDoctorFromAppointment(@PathVariable Long appointmentId) {
+        return appointmentService.getAppointmentById(appointmentId).getDoctor();
     }
 
     @Operation(summary = "Yeni randevu oluşturma")

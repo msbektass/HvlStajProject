@@ -21,7 +21,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -102,21 +104,22 @@ public class AppointmentServiceImpl implements AppointmentService {
         }
     }
 
-    private void checkAppointmentConflicts(AppointmentRequestDTO requestDTO, Long excludedAppointmentId) {
-        boolean doctorConflict;
-        boolean patientConflict;
-        if (excludedAppointmentId == null) {
-            doctorConflict = appointmentManager.existsForDoctor(requestDTO.getDoctorId(), requestDTO.getAppointmentDate(), requestDTO.getAppointmentTime());
-            patientConflict = appointmentManager.existsForPatient(requestDTO.getPatientId(), requestDTO.getAppointmentDate(), requestDTO.getAppointmentTime());
-        } else {
-            doctorConflict = appointmentManager.existsForDoctorExcludingAppointment(requestDTO.getDoctorId(), requestDTO.getAppointmentDate(), requestDTO.getAppointmentTime(), excludedAppointmentId);
-            patientConflict = appointmentManager.existsForPatientExcludingAppointment(requestDTO.getPatientId(), requestDTO.getAppointmentDate(), requestDTO.getAppointmentTime(), excludedAppointmentId);
-        }
+    private void checkAppointmentConflicts(AppointmentRequestDTO dto, Long excludedAppointmentId
+    ) {
+        Long doctorId = dto.getDoctorId();
+        Long patientId = dto.getPatientId();
+        LocalDate date = dto.getAppointmentDate();
+        LocalTime time = dto.getAppointmentTime();
+        boolean doctorConflict = excludedAppointmentId == null ? appointmentManager.existsForDoctor(doctorId, date, time) : appointmentManager.existsForDoctorExcludingAppointment(doctorId, date, time, excludedAppointmentId);
+
         if (doctorConflict) {
-            throw new DoctorAppointmentConflictException(requestDTO.getDoctorId(), requestDTO.getAppointmentDate(), requestDTO.getAppointmentTime());
+            throw new DoctorAppointmentConflictException(doctorId, date, time);
         }
+
+        boolean patientConflict = excludedAppointmentId == null ? appointmentManager.existsForPatient(patientId, date, time) : appointmentManager.existsForPatientExcludingAppointment(patientId, date, time, excludedAppointmentId);
+
         if (patientConflict) {
-            throw new PatientAppointmentConflictException(requestDTO.getPatientId(), requestDTO.getAppointmentDate(), requestDTO.getAppointmentTime());
+            throw new PatientAppointmentConflictException(patientId, date, time);
         }
     }
 

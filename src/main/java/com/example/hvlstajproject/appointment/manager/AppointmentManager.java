@@ -50,7 +50,7 @@ public class AppointmentManager {
     }
 
     public List<AppointmentResponseDTO> findAll() {
-        return appointmentRepository.findAll().stream().map(appointmentMapper::toResponseDTO).toList();
+        return appointmentRepository.findAllWithPatientAndDoctor().stream().map(appointmentMapper::toResponseDTO).toList();
     }
 
     public AppointmentResponseDTO toResponseDTO(Appointment appointment) {
